@@ -1,0 +1,25 @@
+.Btn {
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    background-color: #2ebc4f;
+    border: 2px solid #5bd778;
+}
+
+.Rotem {
+    letter-spacing: 1rem;
+}
+
+.Btn:hover {
+    cursor: pointer;
+    background-color: #23903c;
+}
+
+.Btn:active {
+    background-color: #19672b;
+}
+
+.Btn:focus {
+    outline: none;
+}
