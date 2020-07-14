@@ -1,11 +1,19 @@
 import React from 'react'
 import Button from '../Button/Button'
 import classes from './Navigation.module.css'
+import useNavigation from '../../hooks/useNavigation/useNavigation'
+import Home from '../Home/Home'
+import About from '../About/About'
+import Signin from '../Signin/Signin'
 
 
-export default function NavigationView({ headers, render, }) {
+export default function NavigationView() {
 
-    const [ index, setIndex, ] = React.useState(0)
+    const { getCurrent, getNames, setIndex, } = useNavigation(
+        { name: 'Home', component: <Home /> },
+        { name: 'About', component: <About />},
+        { name: 'Signin', component: <Signin />}
+    )
 
     const { Nav } = classes
 
@@ -13,7 +21,7 @@ export default function NavigationView({ headers, render, }) {
         <>
             <div className={Nav}>
                 {
-                    headers.map((header, i) => (
+                    getNames().map((header, i) => (
                         <Button
                             key={header}
                             title={header}
@@ -23,7 +31,7 @@ export default function NavigationView({ headers, render, }) {
                     ))
                 }
             </div>
-            { render(index) }
+            {getCurrent()}
         </>
 
 
