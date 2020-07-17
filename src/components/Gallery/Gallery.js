@@ -1,41 +1,42 @@
 import React from 'react'
 import useGet from '../../hooks/useGet/useGet'
 import Button from '../Button/Button'
+import useImages from '../../hooks/useImages/useImages'
+import useRequest from '../../hooks/useRequest/useRequest'
 
 export default function Gallery() {
 
-    const [toggleRequest, setToggle] = React.useState(false)
+    const { request, callRequest, } = useRequest()
 
-    const [images, setImages,] = React.useState([])
-    const [index, setIndex,] = React.useState(0)
+    const { data, loading, error, } = useGet('https://random.dog/woof.json', request)
+    
+    const { 
+        
+        currentImage, 
+        incrementIndex, 
+        decrementIndex,
+        isStart,
+        isNewImage,
 
-    const { data, loading, error, } = useGet('https://random.dog/woof.json', toggleRequest)
-
-    // ['sdf']
-
-    React.useEffect(() => {
-        if (data) { setImages([...images, data]) }
-    }, [data])
+    } = useImages(data)
 
 
     return (
         <div>
             <h1>Gallery</h1>
-            <img style={{ maxWidth: '20rem', maxHeight: '20rem' }} src={images[index]} />
+            <img style={{ maxWidth: '20rem', maxHeight: '20rem' }} src={currentImage} />
 
             <Button
                 title="back"
-                disabled={index === 0}
-                onClick={() => setIndex(pre => --pre)}
+                disabled={isStart()}
+                onClick={decrementIndex}
             />
 
             <Button
                 title="next"
                 onClick={() => {
-                    setIndex(pre => ++pre)
-                    if (index >= images.length - 1) {
-                        setToggle(pre => !pre)
-                    }
+                    incrementIndex()
+                    isNewImage() && callRequest()
                 }} />
 
         </div>
