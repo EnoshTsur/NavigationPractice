@@ -6,7 +6,7 @@ const initialValues = Object.freeze({
     loading: true,
 })
 
-export default function useGet(url) {
+export default function useGet(url, listenTo) {
 
     const [response, setResponse] = React.useState({ ...initialValues })
 
@@ -19,7 +19,7 @@ export default function useGet(url) {
         getData()
             .then(({ url }) => setResponse({...response, data: url, loading: false}))
             .catch(error => setResponse({...response, error, loading: false}))
-    }, [])
+    }, [listenTo])
 
     return response
 }

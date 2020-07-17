@@ -3,7 +3,7 @@ import React from 'react'
 export default function useNavigation(...nameAndComponent) {
 
 
-    const [ index, setIndex, ] = React.useState(0) 
+    const [ index, setIndex, ] = React.useState(3) 
 
     function getCurrent() {
         return nameAndComponent[index]?.component

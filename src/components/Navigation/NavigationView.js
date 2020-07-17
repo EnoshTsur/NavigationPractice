@@ -5,6 +5,7 @@ import useNavigation from '../../hooks/useNavigation/useNavigation'
 import Home from '../Home/Home'
 import About from '../About/About'
 import Signin from '../Signin/Signin'
+import Gallery from '../Gallery/Gallery'
 
 
 export default function NavigationView() {
@@ -12,7 +13,8 @@ export default function NavigationView() {
     const { getCurrent, getNames, setIndex, } = useNavigation(
         { name: 'Home', component: <Home /> },
         { name: 'About', component: <About />},
-        { name: 'Signin', component: <Signin />}
+        { name: 'Signin', component: <Signin />},
+        { name: 'Gallery', component: <Gallery />}
     )
 
     const { Nav } = classes
